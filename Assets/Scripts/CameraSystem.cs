@@ -9,10 +9,16 @@ public class CameraSystem : MonoBehaviour
 
     public void ChangeCam(int camNuber)
     {
-        
-        Cameras[camNuber].SetActive(true);
-        LastActiveCam.SetActive(false);
-        LastActiveCam = Cameras[camNuber];
+        if (Cameras[camNuber] == LastActiveCam)
+        {
+
+        }
+        else 
+        {
+            Cameras[camNuber].SetActive(true);
+            LastActiveCam.SetActive(false);
+            LastActiveCam = Cameras[camNuber];
+        }
     }
 
     public void Cam1()
