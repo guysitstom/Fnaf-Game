@@ -2,7 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class Zombie_1_Movement : MonoBehaviour
+public class Zombie_1_Movement1 : MonoBehaviour
 {
     public bool Open;
     [SerializeField] GameObject[] ZombiePos;

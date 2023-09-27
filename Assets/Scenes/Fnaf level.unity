@@ -18228,6 +18228,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 24226be69f37c8943b979c8897a2bfa0, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  Open: 0
   ZombiePos:
   - {fileID: 720876484}
   - {fileID: 481648891}
@@ -52235,9 +52236,10 @@ MonoBehaviour:
   m_GameObject: {fileID: 1254592017}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 24226be69f37c8943b979c8897a2bfa0, type: 3}
+  m_Script: {fileID: 11500000, guid: 159a4e49bdcd6f64d961fc8057e538f6, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  Open: 0
   ZombiePos:
   - {fileID: 1256084811}
   - {fileID: 1250869654}
@@ -52246,10 +52248,10 @@ MonoBehaviour:
   - {fileID: 173344035}
   - {fileID: 184463331}
   - {fileID: 992398997}
-  - {fileID: 267077860}
-  MinTime: 1
-  MaxTime: 5
-  DoorNum: 6
+  - {fileID: 173344035}
+  MinTime: 0
+  MaxTime: 0
+  DoorNum: 0
 --- !u!1 &1256084811 stripped
 GameObject:
   m_CorrespondingSourceObject: {fileID: 1352753540370996, guid: 43b3bfc3c2f2ff146a8d85e63d0a4e26, type: 3}
@@ -58268,6 +58270,10 @@ PrefabInstance:
       propertyPath: m_Materials.Array.data[0]
       value: 
       objectReference: {fileID: 2100000, guid: e555a359571619e4f9b5609eee5aecd9, type: 2}
+    - target: {fileID: 5293764161256867632, guid: 21a8b4d4a0783b6439c6e3322d6a6fb0, type: 3}
+      propertyPath: open
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 5293764161256867632, guid: 21a8b4d4a0783b6439c6e3322d6a6fb0, type: 3}
       propertyPath: vent_anim
       value: 
