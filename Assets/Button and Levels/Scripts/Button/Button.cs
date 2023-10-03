@@ -4,9 +4,9 @@ using UnityEngine;
 public class Button : MonoBehaviour 
 {
 
-    [SerializeField] private bool left;
-    Zombie_1_Movement1 zom;
-    Zombie_1_Movement zom2;
+    [SerializeField] private bool right;
+    public Zombie_1_Movement zom;
+    public Zombie_1_Movement2 zom2;
     Animator _animator;
     public Animator door_anim;
     AudioSource _audioSource;
@@ -47,22 +47,24 @@ public class Button : MonoBehaviour
     {
         door_audioSource.clip = sound[1];
         door_audioSource.Play();
-        /*if (left)
+        if (right)
         {
             zom.Open = true;
         }
-        else { zom2.Open = true; }*/
+        else { 
+            zom2.Open = true; 
+        }
     }
     public void DoorClose()
     {
         door_audioSource.clip = sound[2];
         door_audioSource.Play();
-        /*if (left)
+        if (right)
         {
             zom.Open = false;
         }
         else 
-        { zom2.Open = false; }*/
+        { zom2.Open = false; }
     }
 
 }
