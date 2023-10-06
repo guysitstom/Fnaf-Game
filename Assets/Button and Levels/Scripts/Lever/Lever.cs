@@ -2,7 +2,7 @@ using UnityEngine;
 
 public class Lever : MonoBehaviour
 {
-    Zombie_1_Movement2 zom;
+    public Zombie_1_Movement2 zom;
     public bool open;
     Animator _animator;
     public Animator vent_anim;

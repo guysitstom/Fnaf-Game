@@ -7,6 +7,9 @@ public class CameraSystem : MonoBehaviour
     [SerializeField] private GameObject[] Cameras;
     [SerializeField] private GameObject LastActiveCam;
 
+    [SerializeField] private GameObject LastActiveCamOverlay;
+    [SerializeField] private GameObject[] CamOverlay;
+
     public void ChangeCam(int camNuber)
     {
         if (Cameras[camNuber] == LastActiveCam)
@@ -16,7 +19,10 @@ public class CameraSystem : MonoBehaviour
         else 
         {
             Cameras[camNuber].SetActive(true);
+            CamOverlay[camNuber].SetActive(true);
             LastActiveCam.SetActive(false);
+            LastActiveCamOverlay.SetActive(false);
+            LastActiveCamOverlay = CamOverlay[camNuber];
             LastActiveCam = Cameras[camNuber];
         }
     }

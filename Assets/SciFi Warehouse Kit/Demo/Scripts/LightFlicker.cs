@@ -3,14 +3,14 @@
  
  public class LightFlicker : MonoBehaviour
  {
+     public bool LightFlickerOn;
      public float maximumDim;
      public float maximumBoost;
      public float speed;
      public float strength;
-
-     private bool noFlicker;
      private Light source;
      private float initialIntensity;
+    bool finished;
  
      public void Reset()
      {
@@ -20,21 +20,35 @@
          strength = 250;
      }
  
-     public void Start()
+     public void Awake()
      {
          source = GetComponent<Light>();
          initialIntensity = source.intensity;
          StartCoroutine(Flicker());
      }
- 
- 
-     private IEnumerator Flicker()
+    private void Update()
+    {
+        if (finished && LightFlickerOn)
+        {
+            StartCoroutine(Flicker());
+        }
+        if(LightFlickerOn == false)
+        {
+            source.intensity = 0;
+        }
+    }
+
+
+
+    private IEnumerator Flicker()
      {
-         while (!noFlicker)
-         {
-             source.intensity = Mathf.Lerp(source.intensity, Random.Range(initialIntensity - maximumDim, initialIntensity + maximumBoost), strength * Time.deltaTime);
-             yield return new WaitForSeconds(speed);
-         }
+            
+                finished = false;
+                source.intensity = Mathf.Lerp(source.intensity, Random.Range(initialIntensity - maximumDim, initialIntensity + maximumBoost), strength * Time.deltaTime);
+                yield return new WaitForSeconds(speed);
+                finished = true;
+                           
+         
      }
  }
 

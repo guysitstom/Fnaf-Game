@@ -4,7 +4,7 @@ using UnityEngine.Rendering;
 public class Switch : MonoBehaviour
 {
     Animator _animator;
-    public GameObject light;
+    public LightFlicker lights;
     AudioSource _audioSource;
     public bool switchState;
     public AudioClip[] sound;
@@ -23,14 +23,14 @@ public class Switch : MonoBehaviour
     {
         _audioSource.clip = sound[0];
         _audioSource.Play();
-        light.SetActive(true);
+        lights.LightFlickerOn = true;
     }
 
     public void SwitchOffSound()
     {
         _audioSource.clip = sound[1];
-        _audioSource.Play();
-        light.SetActive(false);
+        _audioSource.Play();                   
+         lights.LightFlickerOn = false;
     }
 
 }
