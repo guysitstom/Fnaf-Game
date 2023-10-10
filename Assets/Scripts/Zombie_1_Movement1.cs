@@ -18,9 +18,9 @@ public class Zombie_1_Movement1 : MonoBehaviour
     }
     IEnumerator Waiting()
     {
-        if (DoorNum != currentZom)
+        if (currentZom == 4)
         {
-            yield return new WaitForSecondsRealtime(Random.Range(MinTime, MaxTime));
+            yield return new WaitForSecondsRealtime(4);
             ZombiePos[currentZom].SetActive(false);
             ZombiePos[currentZom + 1].SetActive(true);
             currentZom++;
@@ -28,20 +28,32 @@ public class Zombie_1_Movement1 : MonoBehaviour
         }
         else
         {
-            yield return new WaitForSecondsRealtime(7);
-            if (Open)
+            if (DoorNum != currentZom)
             {
+                yield return new WaitForSecondsRealtime(Random.Range(MinTime, MaxTime));
                 ZombiePos[currentZom].SetActive(false);
                 ZombiePos[currentZom + 1].SetActive(true);
+                currentZom++;
+                StartCoroutine(Waiting());
             }
             else
             {
-                ZombiePos[currentZom].SetActive(false);
-                ZombiePos[0].SetActive(true);
-                currentZom = 0;
-                StartCoroutine(Waiting());
+                yield return new WaitForSecondsRealtime(2);
+                if (Open)
+                {
+                    ZombiePos[currentZom].SetActive(false);
+                    ZombiePos[currentZom + 1].SetActive(true);
+                }
+                else
+                {
+                    ZombiePos[currentZom].SetActive(false);
+                    ZombiePos[0].SetActive(true);
+                    currentZom = 0;
+                    StartCoroutine(Waiting());
+                }
             }
         }
+        
         
     }
 }

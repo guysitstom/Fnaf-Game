@@ -6,7 +6,7 @@ public class Button : MonoBehaviour
 
     [SerializeField] private bool right;
     public Zombie_1_Movement zom;
-    public Zombie_1_Movement2 zom2;
+    public Zombie_1_Movement1 zom2;
     Animator _animator;
     public Animator door_anim;
     AudioSource _audioSource;

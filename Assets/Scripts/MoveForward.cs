@@ -10,7 +10,7 @@ public class MoveForward : MonoBehaviour
 
 
     
-    void Update()
+    void Start()
     {
         rb.velocity = Movement;
     }
