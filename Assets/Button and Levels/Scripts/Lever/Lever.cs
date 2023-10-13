@@ -1,6 +1,6 @@
 using UnityEngine;
 
-public class Lever : MonoBehaviour
+public class Lever : Powered
 {
     public Zombie_1_Movement2 zom;
     public bool open;
@@ -10,12 +10,14 @@ public class Lever : MonoBehaviour
     public AudioClip[] sound;
     public bool leverState;
     public bool ventState;
+    public GameObject vent;
 
     private void Start()
     {
         _animator = GetComponent<Animator>();
         _audioSource = GetComponent<AudioSource>();
         zom.Open = open;
+        wattage = 0.1f;
         
     }
     private void OnMouseDown()
@@ -26,6 +28,18 @@ public class Lever : MonoBehaviour
         _animator.SetBool("leverState", leverState);
         vent_anim.SetBool("Vent_state", ventState);
         zom.Open = open;
+        if (vent.activeInHierarchy)
+        {
+            if(zom.Open)
+            {
+                Power.Instance.Releasepower(this);
+            }
+            else
+            {
+                Power.Instance.UsePower(this);
+            }
+            
+        }
     }
     public void LeverOnSound()
     {
@@ -37,6 +51,11 @@ public class Lever : MonoBehaviour
     {
         _audioSource.clip = sound[1];
         _audioSource.Play();
+    }
+
+    public override void OnPowerOutage()
+    {
+        vent.SetActive(false);
     }
 }
 

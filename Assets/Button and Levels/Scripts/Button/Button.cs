@@ -1,7 +1,7 @@
 using Unity.VisualScripting;
 using UnityEngine;
 
-public class Button : MonoBehaviour 
+public class Button : Powered 
 {
 
     [SerializeField] private bool right;
@@ -14,12 +14,14 @@ public class Button : MonoBehaviour
     public AudioClip[] sound;
     public bool buttState;
     public bool doorState;
+    public GameObject door;
 
 
     private void Start()
     {
         _animator = GetComponent<Animator>();
         _audioSource = GetComponent<AudioSource>();
+        wattage = 0.1f;
     }
     private void OnMouseDown()
     {
@@ -50,9 +52,11 @@ public class Button : MonoBehaviour
         if (right)
         {
             zom.Open = true;
+            Power.Instance.Releasepower(this);
         }
         else { 
-            zom2.Open = true; 
+            zom2.Open = true;
+            Power.Instance.Releasepower(this);
         }
     }
     public void DoorClose()
@@ -62,9 +66,15 @@ public class Button : MonoBehaviour
         if (right)
         {
             zom.Open = false;
+            Power.Instance.UsePower(this);
         }
         else 
-        { zom2.Open = false; }
+        { zom2.Open = false; Power.Instance.UsePower(this); }
     }
 
+    public override void OnPowerOutage()
+    {
+        door.SetActive(false);
+    }
 }
+
