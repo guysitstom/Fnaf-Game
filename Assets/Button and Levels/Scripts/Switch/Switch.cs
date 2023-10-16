@@ -14,7 +14,7 @@ public class Switch : Powered
     {
         _animator = GetComponent<Animator>();
         _audioSource = GetComponent<AudioSource>();
-        wattage = 0.1f;
+        wattage = 0.4f;
     }
     private void OnMouseDown()
     {

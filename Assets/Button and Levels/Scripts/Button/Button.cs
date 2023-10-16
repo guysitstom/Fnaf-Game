@@ -21,7 +21,7 @@ public class Button : Powered
     {
         _animator = GetComponent<Animator>();
         _audioSource = GetComponent<AudioSource>();
-        wattage = 0.1f;
+        wattage = 0.4f;
     }
     private void OnMouseDown()
     {
@@ -75,6 +75,8 @@ public class Button : Powered
     public override void OnPowerOutage()
     {
         door.SetActive(false);
+        zom.Open = true;
+        zom2.Open = true;
     }
 }
 

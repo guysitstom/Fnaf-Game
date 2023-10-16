@@ -17,7 +17,7 @@ public class Lever : Powered
         _animator = GetComponent<Animator>();
         _audioSource = GetComponent<AudioSource>();
         zom.Open = open;
-        wattage = 0.1f;
+        wattage = 0.4f;
         
     }
     private void OnMouseDown()
@@ -55,6 +55,7 @@ public class Lever : Powered
 
     public override void OnPowerOutage()
     {
+        zom.Open = true;
         vent.SetActive(false);
     }
 }

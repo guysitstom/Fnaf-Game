@@ -1,7 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
-
+using UnityEngine.SceneManagement;
 public class Zombie_1_Movement : MonoBehaviour
 {
     public bool Open;
@@ -9,6 +9,8 @@ public class Zombie_1_Movement : MonoBehaviour
     int currentZom;
     [SerializeField] float MinTime, MaxTime;
     [SerializeField] int DoorNum;
+    [SerializeField] float KillTime;
+    [SerializeField] GameObject DeathOverlay;
     // Start is called before the first frame update
     void Start()
     {
@@ -33,6 +35,8 @@ public class Zombie_1_Movement : MonoBehaviour
             {
                 ZombiePos[currentZom].SetActive(false);
                 ZombiePos[currentZom + 1].SetActive(true);
+                SceneManager.LoadScene("Death Scene");
+                StartCoroutine(Death());
             }
             else
             {
@@ -43,5 +47,12 @@ public class Zombie_1_Movement : MonoBehaviour
             }
         }
         
+    }
+    IEnumerator Death()
+    {
+        yield return new WaitForSeconds(KillTime);
+        DeathOverlay.SetActive(true);
+        yield return new WaitForSecondsRealtime(2);
+        SceneManager.LoadScene("Death Scene");
     }
 }
