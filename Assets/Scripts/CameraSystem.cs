@@ -4,8 +4,8 @@ using UnityEngine;
 
 public class CameraSystem : MonoBehaviour
 {
-    [SerializeField] private GameObject[] Cameras;
-    [SerializeField] private GameObject LastActiveCam;
+    [SerializeField] public GameObject[] Cameras;
+    [SerializeField] public GameObject LastActiveCam;
     public GameObject Button;
     public GameObject Blur;
     [SerializeField] private GameObject LastActiveCamOverlay;

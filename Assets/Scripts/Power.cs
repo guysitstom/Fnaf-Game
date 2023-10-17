@@ -27,10 +27,6 @@ public class Power : MonoBehaviour
     }
     private void OnGUI()
     {
-        GUILayout.Label(Charge.ToString());
-        GUILayout.Label(PowerSink.ToString());
-
-       
         int  decimalVal = Convert.ToInt32(Charge);
 
         PowerText.text = decimalVal.ToString() + "%";

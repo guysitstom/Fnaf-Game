@@ -11,6 +11,8 @@ public class Zombie_1_Movement2 : MonoBehaviour
     [SerializeField] int DoorNum;
     [SerializeField] float KillTime;
     [SerializeField] GameObject DeathOverlay;
+    public CameraSystem cams;
+    [SerializeField] AudioSource knock;
     // Start is called before the first frame update
     void Start()
     {
@@ -35,7 +37,10 @@ public class Zombie_1_Movement2 : MonoBehaviour
             {
                 ZombiePos[currentZom].SetActive(false);
                 ZombiePos[currentZom + 1].SetActive(true);
-                SceneManager.LoadScene("Death Scene");
+                if (cams.LastActiveCam != cams.Cameras[7])
+                {
+                    cams.MainCam();
+                }
                 StartCoroutine(Death());
             }
             else
@@ -43,6 +48,7 @@ public class Zombie_1_Movement2 : MonoBehaviour
                 ZombiePos[currentZom].SetActive(false);
                 ZombiePos[0].SetActive(true);
                 currentZom = 0;
+                knock.Play();
                 StartCoroutine(Waiting());
             }
         }
@@ -52,7 +58,7 @@ public class Zombie_1_Movement2 : MonoBehaviour
     {
         yield return new WaitForSeconds(KillTime);
         DeathOverlay.SetActive(true);
-        yield return new WaitForSecondsRealtime(2);
+        yield return new WaitForSecondsRealtime(4);
         SceneManager.LoadScene("Death Scene");
     }
 }
