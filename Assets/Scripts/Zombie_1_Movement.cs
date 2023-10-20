@@ -13,6 +13,7 @@ public class Zombie_1_Movement : MonoBehaviour
     [SerializeField] GameObject DeathOverlay;
     public CameraSystem cams;
     [SerializeField] AudioSource knock;
+    [SerializeField] GameObject[] Cam_blur;
     // Start is called before the first frame update
     void Start()
     {
@@ -28,6 +29,7 @@ public class Zombie_1_Movement : MonoBehaviour
             ZombiePos[currentZom].SetActive(false);
             ZombiePos[currentZom + 1].SetActive(true);
             currentZom++;
+            StartCoroutine(Blur(currentZom));
             StartCoroutine(Waiting());
         }
         else
@@ -60,5 +62,13 @@ public class Zombie_1_Movement : MonoBehaviour
         DeathOverlay.SetActive(true);
         yield return new WaitForSecondsRealtime(4);
         SceneManager.LoadScene("Death Scene");
+    }
+    IEnumerator Blur(int cam)
+    {
+        Cam_blur[cam].SetActive(true);
+        Cam_blur[cam-1].SetActive(true);
+        yield return new WaitForSeconds(1f);
+        Cam_blur[cam].SetActive(false);
+        Cam_blur[cam - 1].SetActive(false);
     }
 }
